@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html>
-<header>
+<head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>
+		$( document ).ready( function () {
+			alert("Document is ready");
+		});
 
-</header>
+		//Process
+		//0.) Use regex
+		//1.) replace all white space characters with no white space
+		//2.) make all characters lower case
+		//3.) test for valid symbols
+		//4.) test for one equals sign
+		//5.) test for only two variables
+		//6.) test for operators next to operands
+		//7.) test for valid parenthesis 
+		//if valid send output to graph function
+		//if invalid report why in an alert box
+		function validateEquation (equation) {
+			alert("Input: " + equation);
+
+		}
+
+
+	</script>
+
+</head>
 <body>
 
-<h1>HTML5 Programming Challenge SVG</h1>
+<header>
+	<h1>Linear Equation Programming Challenge</h1>
+</header>
 
 <section>
 	<article>
@@ -35,12 +60,12 @@
 	<div>
 		<h3>User Controls</h3>
 		<label for="Equation">Equation: </label>
-		<input type="text" name="Equation" id="equation">
+		<input type="text" name="Equation" id="equation" onchange="validateEquation( this.value )" />
 	</div>
-	<div>
-		<h3>Equation Graph</h3>
-		<svg>
-
+	<div >
+		<h3>Equation Graph (SVG)</h3>
+		<svg id="graph" style="border:1px solid black">
+			<circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
 		</svg>
 	</div>
 </section>
