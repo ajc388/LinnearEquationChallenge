@@ -36,11 +36,9 @@
 	</script>
 </head>
 <body>
-
 	<header>
 		<h1>Linear Equation Programming Challenge</h1>
 	</header>
-
 	<section>
 		<article>
 		   <!--Write a program that does the following
@@ -54,7 +52,6 @@
 				<li>This can be done in any language (JavaScript levelerage the browser is preferred)</li>
 			</ul>
 		</article>
-
 		<article>
 			<h4>Directions: </h4>
 			<ol>
@@ -63,7 +60,6 @@
 			</ol>
 		</article>
 	</section>
-
 	<section>
 		<div>
 			<h3>Controls</h3>
@@ -72,10 +68,7 @@
 		</div>
 		<div >
 			<h3>Graph (SVG)</h3>
-			<svg id="graph" style="width:520px;height:520px;">
-				<script type="text/JavaScript">
-					var grid = new grid(5, 5, 10, 500, 500);
-				</script>
+			<svg id="graph" style="width:520px;height:520px;" onLoad="new grid(5,5,10,500,500)">
 			</svg>
 		</div>
 	</section>	
