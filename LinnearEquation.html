@@ -3,12 +3,8 @@
 <html>
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script>
-		$( document ).ready( function () {
-
-			var grid = new grid(5, 5, 10, 500, 500);
-		});
-
+	<script type="text/JavaScript" src="Grid.js"> </script>
+	<script type="text/JavaScript">
 		//Process
 		//0.) Use regex
 		//1.) replace all white space characters with no white space
@@ -41,45 +37,47 @@
 </head>
 <body>
 
-<header>
-	<h1>Linear Equation Programming Challenge</h1>
-</header>
+	<header>
+		<h1>Linear Equation Programming Challenge</h1>
+	</header>
 
-<section>
-	<article>
-	   <!--Write a program that does the following
-	* Takes in a simple linear equation
-	* Graph the equation
-	* This can be done in any language (JavaScript leverage the browser is preferred)-->
-		<h4>Assignment Description:</h4>
-		<ul>
-			<li>Takes in a simple linear equation</li>
-			<li>Graph the equation</li>
-			<li>This can be done in any language (JavaScript levelerage the browser is preferred)</li>
-		</ul>
-	</article>
+	<section>
+		<article>
+		   <!--Write a program that does the following
+		* Takes in a simple linear equation
+		* Graph the equation
+		* This can be done in any language (JavaScript leverage the browser is preferred)-->
+			<h4>Assignment Description:</h4>
+			<ul>
+				<li>Takes in a simple linear equation</li>
+				<li>Graph the equation</li>
+				<li>This can be done in any language (JavaScript levelerage the browser is preferred)</li>
+			</ul>
+		</article>
 
-	<article>
-		<h4>Directions: </h4>
-		<ol>
-			<li>Enter a valid simple linear equation into the input box below.</li>
-			<li>The program will then attempt to draw the equation as an svg.</li>
-		</ol>
-	</article>
-</section>
+		<article>
+			<h4>Directions: </h4>
+			<ol>
+				<li>Enter a valid simple linear equation into the input box below.</li>
+				<li>The program will then attempt to draw the equation as an svg.</li>
+			</ol>
+		</article>
+	</section>
 
-<section>
-	<div>
-		<h3>Controls</h3>
-		<label for="Equation">Equation: </label>
-		<input type="text" name="Equation" id="equation" onchange="validateEquation( this.value )" />
-	</div>
-	<div >
-		<h3>Graph (SVG)</h3>
-		<svg id="graph" style="width:520px;height:520px;">
-		</svg>
-	</div>
-</section>
-
+	<section>
+		<div>
+			<h3>Controls</h3>
+			<label for="Equation">Equation: </label>
+			<input type="text" name="Equation" id="equation" onchange="validateEquation( this.value )" />
+		</div>
+		<div >
+			<h3>Graph (SVG)</h3>
+			<svg id="graph" style="width:520px;height:520px;">
+				<script type="text/JavaScript">
+					var grid = new grid(5, 5, 10, 500, 500);
+				</script>
+			</svg>
+		</div>
+	</section>	
 </body>
 </html>

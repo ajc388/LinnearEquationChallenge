@@ -14,7 +14,20 @@ function grid(domain, range, padding, maxWidth, maxHeight) {
 		buildAxisX();
 		buildAxisY();
 	}
- 
+ 	
+ 	//Will add in a point to the svg
+ 	function addPoint(x, y) {
+ 		var svgGraphNode = $('#graph');
+ 		var group;
+ 		if ( $('data') != undefined) 
+ 		{
+	 		group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+			group.setAttribute("id", "data");
+			svgGraphNode.append(group);
+		}
+		
+ 	}
+
 	function buildAxisY() {
 		//BUILD Y AXIS
 		var startY = padding;
