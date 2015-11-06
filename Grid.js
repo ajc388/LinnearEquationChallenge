@@ -25,7 +25,12 @@ function grid(domain, range, padding, maxWidth, maxHeight) {
 			group.setAttribute("id", "data");
 			svgGraphNode.append(group);
 		}
-		
+
+		var point = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+		point.setAttribute("r", 5);
+		point.setAttribute("data-value", y);
+		point.setAttribute("cx", x);
+
  	}
 
 	function buildAxisY() {

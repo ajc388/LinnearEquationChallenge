@@ -18,7 +18,8 @@
 		//if invalid report why in an alert box
 		function validateEquation (equation) {
 			alert("Input: " + equation);
-
+			
+			graphEquation(equation);
 		}
 
 		/*Responsible for writing to the svg
@@ -27,6 +28,8 @@
 	    3.) 
 		*/
 		function graphEquation (equation) {
+			
+
 
 		}
 
@@ -62,8 +65,8 @@
 	</section>
 	<section>
 		<div>
-			<h3>Controls</h3>
-			<label for="Equation">Equation: </label>
+			<h3>Equation: </h3>
+			<label for="Equation">y = </label>
 			<input type="text" name="Equation" id="equation" onchange="validateEquation( this.value )" />
 		</div>
 		<div >
