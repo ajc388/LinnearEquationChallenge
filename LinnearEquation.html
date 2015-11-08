@@ -5,43 +5,42 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/JavaScript" src="Grid.js"> </script>
 	<script type="text/JavaScript">
-		//Process
-		//0.) Use regex
-		//1.) replace all white space characters with no white space
-		//2.) make all characters lower case
-		//3.) test for valid symbols
-		//4.) test for one equals sign
-		//5.) test for only two variables
-		//6.) test for operators next to operands
-		//7.) test for valid parenthesis 
-		//if valid send output to graph function
-		//if invalid report why in an alert box
+		
+		//Validates the text input to get something that looks like an equation
 		function validateEquation (equation) {
-			alert("Input: " + equation);
-			graphEquation(equation);
+			if ( equation.length > 25 ) {
+				alert("Must not contain more than 25 symbols."); 
+			}
+			else if (!equation.match(/[\.\dxy\-+=*\/\(\)]+/))
+			{
+				alert("Does not contain valid equation symbols such as: 0123456789, xy, .-+=*/()")
+			}
+			else if ( !equation.match(/y=[^y=]+*/)) { //only one y
+				alert("Must be y = expression with no additional y's.");
+			}
+			else if ( !equation.match(/[^x]*x[^x]*/)) { //only one x
+				alert("Must contain one x variable.");
+			}
+			else if ( equation.match(/([^\dxy][+*\/][\dxy])|([\dxy][-+\/*][^\dxy])/)) { //test symbol placement
+				alert("Operators must be between variables or numbers");
+			}
+			else {
+				generateGraphData(equation);
+			}
 		}
 
-		/*Responsible for writing to the svg
-		1.) Choose the first variable to act as the indepedent variable
-		2.) Set independent variable to and calculate dependent variable value  {-4, -2, -1, 0, 1, 2, 4}
-	    3.) 
-		*/
-		function graphEquation (equation) {
+		/*Determine the graph data for the equation*/
+		function generateGraphData(equation) {
 			var data = [];
-
-			var arr = [-4,-2,0,2,4];
-			for ( var i = 0; i < 5; i++)
+			var domain = Math.round(Math.random()*7)+3; //create a domain somewhere around 3-10 characters.
+			for ( var x = -1*domain; x < domain+1; x++)
 			{
-				var x = arr[i];
 				var y = eval(equation); //will solve for equation!
 				data.push(x);
 				data.push(y);
 			}
-			
 			var grid = new Grid(data); //constructs a new grid
-			grid.addData(data);
 		}
-
 	</script>
 </head>
 <body>
@@ -71,8 +70,8 @@
 	</section>
 	<section>
 		<div>
-			<h3>Equation: </h3>
-			<label for="Equation">y = </label>
+			<h3>User Controls</h3>
+			<label for="Equation">Equation: </label>
 			<input type="text" name="Equation" id="equation" onchange="validateEquation( this.value )" />
 		</div>
 		<div >

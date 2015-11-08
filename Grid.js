@@ -2,7 +2,6 @@
 //This is my first time using SVG
 function Grid(data) {
 	//Initialization
-	this.domain = 5;
 	this.padding = 10;
 	this.maxWidth = 500;
 	this.maxHeight = 500;
@@ -10,7 +9,7 @@ function Grid(data) {
 	this.midY = 250 + this.padding;
 	this.data = data;
 
-	//Calculates the max y range out of the data plot
+	//Calculates the max range out of data series
 	this.calculateRange = function() 
 	{
 		if (this.data.length < 2)
@@ -24,37 +23,49 @@ function Grid(data) {
 				if ( Math.abs(data[i]) > Math.abs(largeY))
 					largeY = data[i];
 			}
-			return Math.abs(largeY)+1;
+			return Math.abs( Math.ceil(largeY) ) +1;
 		}
 	}
-	this.range = this.calculateRange();
-	
- 	//Will add in a point to the svg
- 	this.addData = function(data) {
- 		this.data = data;
-
+	//Calculates the max domain out of data series
+	this.calculateDomain = function() 
+	{
+		if (this.data.length < 2)
+		{
+			return 5;
+		}
+		else 
+		{
+			var largeX = data[0];
+			for ( var i = 0; i < data.length; i=i+2) {
+				if ( Math.abs(data[i]) > Math.abs(largeX))
+					largeX = data[i];
+			}
+			return Math.abs( Math.ceil(largeX)) +1;
+		}
+	};
+	//Will add in a point to the svg
+ 	this.addData = function() {
  		var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
 		group.setAttribute("id", "data");
 		$('#graph').append(group);
 		
-		for (var i = 0; i < data.length; i=i+2 ) 
+		for (var i = 0; i < this.data.length; i=i+2 ) 
 		{
-			var xPos = data[i]*(this.maxWidth/(this.domain*2))+this.midX;
-			var yPos = (-1*data[i+1]*(this.maxHeight/(this.range*2)))+this.midY;
+			var xPos = this.data[i]*(this.maxWidth/(this.domain*2))+this.midX;
+			var yPos = (-1*this.data[i+1]*(this.maxHeight/(this.range*2)))+this.midY;
 
 			var point = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 			point.setAttribute("r", 3);
 			point.setAttribute("cx", xPos);
 			point.setAttribute("cy", yPos);
-			point.setAttribute("style", "stroke:rgb(50,50,150);stroke-width:1;");
+			point.setAttribute("style", "stroke:rgb(70,70,200);stroke-width:1;");
 			group.appendChild(point);
 
 			var lbl = document.createElementNS("http://www.w3.org/2000/svg", "text");
 			lbl.setAttribute("x", xPos-23);
 			lbl.setAttribute("y", yPos-5);
 			lbl.setAttribute('fill', '#000');
-			lbl.textContent = "("+data[i]+","+data[i+1]+")";
-			alert(lbl.textContent);
+			lbl.textContent = "("+this.data[i].toFixed(1)+","+this.data[i+1].toFixed(1)+")";
 			group.appendChild(lbl);
 		}
  	};
@@ -163,9 +174,11 @@ function Grid(data) {
 	/*Setup the lines for a basic graph*/
 	this.setupGrid = function() {
 		this.clearGrid();
+		this.range = this.calculateRange();
+		this.domain = this.calculateDomain();
 		this.buildAxisX();
 		this.buildAxisY();
+		this.addData();
 	};
 	this.setupGrid();
-	
 }
