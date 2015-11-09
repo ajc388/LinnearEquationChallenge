@@ -8,14 +8,11 @@ function Grid(data) {
 	this.midX = 250 + this.padding;
 	this.midY = 250 + this.padding;
 	this.data = data;
-
 	//Calculates the max range out of data series
 	this.calculateRange = function() 
 	{
 		if (this.data.length < 2)
-		{
 			return 5;
-		}
 		else 
 		{
 			var largeY = data[1];
@@ -25,14 +22,12 @@ function Grid(data) {
 			}
 			return Math.abs( Math.ceil(largeY) ) +1;
 		}
-	}
+	};
 	//Calculates the max domain out of data series
 	this.calculateDomain = function() 
 	{
 		if (this.data.length < 2)
-		{
 			return 5;
-		}
 		else 
 		{
 			var largeX = data[0];
@@ -44,7 +39,7 @@ function Grid(data) {
 		}
 	};
 	//Will add in a point to the svg
- 	this.addData = function() {
+ 	this.plotData = function() {
  		var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
 		group.setAttribute("id", "data");
 		$('#graph').append(group);
@@ -65,7 +60,7 @@ function Grid(data) {
 			lbl.setAttribute("x", xPos-23);
 			lbl.setAttribute("y", yPos-5);
 			lbl.setAttribute('fill', '#000');
-			lbl.textContent = "("+this.data[i].toFixed(1)+","+this.data[i+1].toFixed(1)+")";
+			lbl.textContent = "("+this.data[i]+","+this.data[i+1].toFixed(1)+")";
 			group.appendChild(lbl);
 		}
  	};
@@ -178,7 +173,7 @@ function Grid(data) {
 		this.domain = this.calculateDomain();
 		this.buildAxisX();
 		this.buildAxisY();
-		this.addData();
+		this.plotData();
 	};
 	this.setupGrid();
 }
