@@ -3,56 +3,8 @@
 <html>
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/JavaScript" src="Grid.js"> </script>
-	<script type="text/JavaScript">
-		//When document is fully ready
-		$(document).ready( function() {
-			//Create a place holder grid
-			var grid = new Grid([]);
-
-			//Add in the event on change
-			$('#equation').change( function () {
-				var response = validateEquation(this.value);
-				if ( response ) 
-					alert(response);
-			});
-		});
-
-		//Validates the text input to get something that looks like an equation
-		function validateEquation (equation) {
-			if ( equation.length > 25 ) 
-				return "Must not contain more than 25 symbols."; 
-			else if ( equation.match(/[^\dxy\.\-+=*\/\(\)]+/) )
-				return "Does not contain valid equation symbols: 0123456789xy.-+=*/()";
-			else if ( equation.match(/[\dx*\-+\/]y=/)) //no garbage before y= (why force the user to enter y=...)
-				return "Must start with y=";
-			else if ( !equation.match(/[^y]*y[^y]*/))  //only one y
-				return "Must contain one y.";
-			else if ( !equation.match(/[^=]*=[^=]*/))  //only one =
-				return "Must contain one equals sign.";
-			else if ( !equation.match(/[^x]*x[^x]*/))  //only one x
-				return "Must contain one x.";
-			else if ( equation.match(/([^\dxy][+*\/][\dxy])|([\d|x|y][-+\/*][^\dxy])|([\d][xy])/)) //symbol placement
-				return "Operators must be between variables or numbers";
-			else {
-				generateGraphData(equation);
-				return;
-			}
-		}
-
-		/*Determine the graph data for the equation*/
-		function generateGraphData(equation) {
-			var data = [];
-			var domain = Math.round(Math.random()*7)+3; //create a domain somewhere around 3-10 characters.
-			for ( var x = -1*domain; x < domain+1; x++)
-			{
-				var y = eval(equation); //will solve for equation!
-				data.push(x);
-				data.push(y);
-			}
-			var grid = new Grid(data); //constructs a new grid
-		}
-	</script>
+	<script type="text/JavaScript" src="Assets/JavaScript/Grid.js"></script>
+	<script type="text/JavaScript" src="Assets/JavaScript/LinnearEquation.js"></script>
 </head>
 <body>
 	<header>
@@ -87,7 +39,7 @@
 		</div>
 		<div >
 			<h3>Graph (SVG)</h3>
-			<svg id="graph" style="width:520px;height:520px;"></svg>
+			<svg id="graph"></svg>
 		</div>
 	</section>	
 </body>

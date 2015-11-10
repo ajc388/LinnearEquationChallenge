@@ -1,14 +1,17 @@
 //WARNING the code you are about to see may cause cardiac arrest.
-//This is my first time using SVG
-function Grid(data) {
-	//Initialization
-	this.padding = 10;
-	this.maxWidth = 500;
-	this.maxHeight = 500;
+
+//You must have data when you call the grid constructor
+//Everything else is optional
+function Grid(data, graph, maxWidth, maxHeight, padding) {
+	//This initialization allows for multiple constructors - how cool is that?!
+	this.padding = padding ? padding : 10;
+	this.maxWidth = maxWidth ? maxWidth : 500;
+	this.maxHeight = maxHeight ? maxHeight : 500;
+	this.graph = graph ? graph : $('#graph');
 	this.midX = 250 + this.padding;
 	this.midY = 250 + this.padding;
 	this.data = data;
-	//Calculates the max range out of data series
+	//Determines the largest positive or negative y value out of a data series.
 	this.calculateRange = function() 
 	{
 		if (this.data.length < 2)
@@ -23,7 +26,7 @@ function Grid(data) {
 			return Math.abs( Math.ceil(largeY) ) +1;
 		}
 	};
-	//Calculates the max domain out of data series
+	//Determines the largest positive or negative x value out of data series.
 	this.calculateDomain = function() 
 	{
 		if (this.data.length < 2)
@@ -38,11 +41,11 @@ function Grid(data) {
 			return Math.abs( Math.ceil(largeX)) +1;
 		}
 	};
-	//Will add in a point to the svg
+	//Adds all of the data points to the grid from our data array
  	this.plotData = function() {
  		var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
 		group.setAttribute("id", "data");
-		$('#graph').append(group);
+		this.graph.append(group);
 		
 		for (var i = 0; i < this.data.length; i=i+2 ) 
 		{
@@ -60,19 +63,19 @@ function Grid(data) {
 			lbl.setAttribute("x", xPos-23);
 			lbl.setAttribute("y", yPos-5);
 			lbl.setAttribute('fill', '#000');
-			lbl.textContent = "("+this.data[i]+","+this.data[i+1].toFixed(1)+")";
+			lbl.textContent = "("+this.data[i].toFixed(1)+","+this.data[i+1].toFixed(1)+")";
 			group.appendChild(lbl);
 		}
  	};
+ 	//Constructs the y axis tick marks.
 	this.buildAxisY = function() {
 		//BUILD Y AXIS
 		var startY = this.padding;
 		var endY = this.maxHeight + this.padding;
 
-		var svgGraphNode = $('#graph');
 		group = document.createElementNS("http://www.w3.org/2000/svg", "g");
 		group.setAttribute("id", "yAxis");
-		svgGraphNode.append(group);
+		this.graph.append(group);
 
 		//Add Main Y line
 		var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -112,15 +115,15 @@ function Grid(data) {
 		lbl.textContent = this.range*-1;
 		group.appendChild(lbl);
 	};
+	//Constructs the x axis tick marks
 	this.buildAxisX = function() {
 		//BUILD X AXIS
 		var startX = this.padding;
 		var endX = this.maxWidth + this.padding;
 		
-		var svgGraphNode = $('#graph');
 		var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
 		group.setAttribute("id", "xAxis");
-		svgGraphNode.append(group);
+		this.graph.append(group);
 
 		//Add Main X line
 		var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -161,6 +164,7 @@ function Grid(data) {
 		lbl.textContent = this.domain;
 		group.appendChild(lbl);
 	};
+	//Clears out the data in the svg
 	this.clearGrid = function() {
 		$('#xAxis').remove();
 		$('#yAxis').remove();
@@ -169,6 +173,10 @@ function Grid(data) {
 	/*Setup the lines for a basic graph*/
 	this.setupGrid = function() {
 		this.clearGrid();
+		//Set dimensions of svg
+		this.graph.width(this.maxWidth+this.padding*2);
+		this.graph.height(this.maxHeight+this.padding*2);
+
 		this.range = this.calculateRange();
 		this.domain = this.calculateDomain();
 		this.buildAxisX();
