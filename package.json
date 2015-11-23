@@ -1,0 +1,39 @@
+{
+  "name": "linnear_equation_challenge",
+  "version": "1.0.0",
+  "description": "A programming challenge, that is evolving to use the development stack at Mattersight.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajc388/LinnearEquationChallenge.git"
+  },
+  "keywords": [
+    "Programming",
+    "Challenge",
+    "Tutorial",
+    "Exploration",
+    "Linear",
+    "Equations",
+    "Math",
+    "Grunt",
+    "Bower",
+    "Marionette",
+    "Backbone",
+    "JavaScript",
+    "Educational"
+  ],
+  "author": "Andrew Carter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajc388/LinnearEquationChallenge/issues"
+  },
+  "homepage": "https://github.com/ajc388/LinnearEquationChallenge#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "grunt": "^0.4.5"
+  }
+}

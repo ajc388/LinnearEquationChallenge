@@ -2,15 +2,12 @@
 $(document).ready( function() {
 	//Create a place holder grid
 	var grid = new Grid([]);
-
+	
 	//Add in the event on change
 	$('#equation').change( function () {
 		var valid = validateEquation(this.value);
 		if ( valid ) alert(valid);
-		else 
-		{
-			grid = new Grid(generateGraphData(this.value)); //constructs a new grid
-		}
+		else grid = new Grid(generateGraphData(this.value)); //constructs a new grid
 	});
 });
 
