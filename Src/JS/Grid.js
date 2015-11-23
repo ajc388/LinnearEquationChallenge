@@ -89,7 +89,7 @@ function Grid(data, graph, maxWidth, maxHeight, padding) {
 		var y = startY;
 		while ( y <= endY ) 
 		{
-			var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+			line = document.createElementNS("http://www.w3.org/2000/svg", "line");
 			line.setAttribute("x1", this.midX-10);
 			line.setAttribute("y1", y);
 			line.setAttribute("x2", this.midX+10);
@@ -138,7 +138,7 @@ function Grid(data, graph, maxWidth, maxHeight, padding) {
 		var x = startX;
 		while ( x <= endX ) 
 		{
-			var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+			line = document.createElementNS("http://www.w3.org/2000/svg", "line");
 			line.setAttribute("x1", x);
 			line.setAttribute("y1", this.midY-10);
 			line.setAttribute("x2", x);
