@@ -37,7 +37,9 @@ function generateGraphData(equation) {
 	var domain = Math.round(Math.random()*7)+3; //create a domain somewhere around 3-10 characters.
 	for ( var x = -1*domain; x < domain+1; x++)
 	{
+		/* jshint ignore:start */
 		var y = eval(equation); //will solve for equation!
+		/* jshint ignore:end */
 		data.push(x);
 		data.push(y);
 	}

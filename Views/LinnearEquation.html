@@ -2,45 +2,48 @@
 <!--Note: this would have been much easier with D3.JS-->
 <html>
 <head>
+	<style type="text/css" src="../Dist/CSS/basic.css"></style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/JavaScript" src="../Dist/JS//Grid.js"></script>
 	<script type="text/JavaScript" src="../Dist/JS/LinnearEquation.js"></script>
 </head>
 <body>
-	<header>
-		<h1>Linear Equation Programming Challenge</h1>
-	</header>
-	<section>
-		<article>
-		   <!--Write a program that does the following
-		* Takes in a simple linear equation
-		* Graph the equation
-		* This can be done in any language (JavaScript leverage the browser is preferred)-->
-			<h4>Assignment Description:</h4>
-			<ul>
-				<li>Takes in a simple linear equation</li>
-				<li>Graph the equation</li>
-				<li>This can be done in any language (JavaScript levelerage the browser is preferred)</li>
-			</ul>
-		</article>
-		<article>
-			<h4>Directions: </h4>
-			<ol>
-				<li>Enter a valid simple linear equation into the input box below.</li>
-				<li>The program will then attempt to draw the equation as an svg.</li>
-			</ol>
-		</article>
-	</section>
-	<section>
-		<div>
-			<h3>User Controls</h3>
-			<label for="Equation">Equation: </label>
-			<input type="text" id="equation"/>
-		</div>
-		<div >
-			<h3>Graph (SVG)</h3>
-			<svg id="graph"></svg>
-		</div>
-	</section>	
+	<section class="content">
+		<header>
+			<h1>Linear Equation Programming Challenge</h1>
+		</header>
+		<section>
+			<article>
+			   <!--Write a program that does the following
+			* Takes in a simple linear equation
+			* Graph the equation
+			* This can be done in any language (JavaScript leverage the browser is preferred)-->
+				<h4>Assignment Description:</h4>
+				<ul>
+					<li>Takes in a simple linear equation</li>
+					<li>Graph the equation</li>
+					<li>This can be done in any language (JavaScript levelerage the browser is preferred)</li>
+				</ul>
+			</article>
+			<article>
+				<h4>Directions: </h4>
+				<ol>
+					<li>Enter a valid simple linear equation into the input box below.</li>
+					<li>The program will then attempt to draw the equation as an svg.</li>
+				</ol>
+			</article>
+		</section>
+		<section>
+			<div>
+				<h3>User Controls</h3>
+				<label for="Equation">Equation: </label>
+				<input type="text" id="equation"/>
+			</div>
+			<div >
+				<h3>Graph (SVG)</h3>
+				<svg id="graph"></svg>
+			</div>
+		</section>
+	<section>	
 </body>
 </html>
