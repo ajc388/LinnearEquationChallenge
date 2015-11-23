@@ -58,6 +58,19 @@ module.exports = function(grunt) {
           'Dist/CSS/basic.min.css': 'Src/CSS/basic.css'
         }
       }
+    },
+
+    //Configuration for watch
+    watch: {
+      // for stylesheets, watch css and less files 
+      stylesheets: { 
+        files: ['Src/CSS/*.css', 'Src/CSS/*.less'], tasks: ['less', 'cssmin'] 
+      },
+
+      // for scripts, run jshint and uglify 
+      scripts: { 
+        files: 'Src/JS/*.js', tasks: ['jshint', 'uglify'] 
+      } 
     }
   });
   

@@ -1,12 +1,14 @@
-/* src/css/pretty.less */
+/* src/css/basic.less */
 body {
   background: #000;
-}
-section.content {
-  padding: 5px;
-  background: #FFF;
   color: #000;
 }
-div {
-  background: #6F3596;
+section.content {
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 20px;
+  width: 70%;
+  background: #FFF;
 }
